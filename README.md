@@ -11,11 +11,9 @@
     - [Adding Exomiser Configuration File](#adding-exomiser-configuration-file)
     - [Preset Exome Analysis File](#preset-exome-analysis-file)
     - [Generating Makefile](#generating-makefile)
-    - [PhEval Exomiser Optional dependency](#pheval-exomiser-optional-dependency)
     - [Run the experiment](#run-the-experiment)
   - [Questions and impacts](#questions-and-impacts)
 - [Acknowledgements](#acknowledgements)
-
 
 ## Dependency Graph
 
@@ -29,17 +27,16 @@ graph TD;
     D--Depends-->B[pheval];
     E--Depends-->B[pheval];
 ```
+
 ---
 
 > - Straight line represents mandatory dependency;
+
 ---
 
 With this new feature, the Makefile can be generated within this repo, and the user can invoke the make pheval goal based on the [pheval configuration file](resources/pheval-config.yaml).
 
-
-
 ## PhEval Config Structure
-
 
 The corpora and configuration data were moved from [PhEval](https://github.com/monarch-initiative/pheval) to this new structure.
 
@@ -67,8 +64,7 @@ The corpora and configuration data were moved from [PhEval](https://github.com/m
  ┃ ┣ 📜Makefile.j2  
  ┃ ┣ 📜custom.Makefile  
  ┃ ┣ 📜generatemakefile.sh  
- ┃ ┗ 📜pheval-config.yaml  
-
+ ┃ ┗ 📜pheval-config.yaml
 
 ## Configuring and Running an Experiment
 
@@ -78,7 +74,6 @@ The corpora and configuration data were moved from [PhEval](https://github.com/m
 poetry shell
 poetry install
 ```
-
 
 ### Editing PhEval configuration file
 
@@ -102,7 +97,6 @@ configs:
     version: 13.2.0
     configuration: default
     exomiser_db: semsim1
-
 
 runs:
   - tool: exomiser
@@ -141,7 +135,7 @@ tool_specific_configuration_options:
 
 ### Preset Exome Analysis File
 
-Exomiser requires a *preset-exome-analysis.yml* file saved at **/path_where_exomiser_was_extracted/preset-exome-analysis.yml**
+Exomiser requires a _preset-exome-analysis.yml_ file saved at **/path_where_exomiser_was_extracted/preset-exome-analysis.yml**
 
 This is an example of preset-exome-analysis.yml file
 
@@ -151,30 +145,36 @@ This is an example of preset-exome-analysis.yml file
 # your own set-up.
 ---
 analysisMode: PASS_ONLY
-inheritanceModes: {
-  AUTOSOMAL_DOMINANT: 0.1,
-  AUTOSOMAL_RECESSIVE_HOM_ALT: 0.1,
-  AUTOSOMAL_RECESSIVE_COMP_HET: 2.0,
-  X_DOMINANT: 0.1,
-  X_RECESSIVE_HOM_ALT: 0.1,
-  X_RECESSIVE_COMP_HET: 2.0,
-  MITOCHONDRIAL: 0.2
-}
+inheritanceModes:
+  {
+    AUTOSOMAL_DOMINANT: 0.1,
+    AUTOSOMAL_RECESSIVE_HOM_ALT: 0.1,
+    AUTOSOMAL_RECESSIVE_COMP_HET: 2.0,
+    X_DOMINANT: 0.1,
+    X_RECESSIVE_HOM_ALT: 0.1,
+    X_RECESSIVE_COMP_HET: 2.0,
+    MITOCHONDRIAL: 0.2,
+  }
 frequencySources: [
     THOUSAND_GENOMES,
     TOPMED,
     UK10K,
 
-    ESP_AFRICAN_AMERICAN, ESP_EUROPEAN_AMERICAN, ESP_ALL,
+    ESP_AFRICAN_AMERICAN,
+    ESP_EUROPEAN_AMERICAN,
+    ESP_ALL,
 
-    EXAC_AFRICAN_INC_AFRICAN_AMERICAN, EXAC_AMERICAN,
-    EXAC_SOUTH_ASIAN, EXAC_EAST_ASIAN,
-    EXAC_FINNISH, EXAC_NON_FINNISH_EUROPEAN,
+    EXAC_AFRICAN_INC_AFRICAN_AMERICAN,
+    EXAC_AMERICAN,
+    EXAC_SOUTH_ASIAN,
+    EXAC_EAST_ASIAN,
+    EXAC_FINNISH,
+    EXAC_NON_FINNISH_EUROPEAN,
     EXAC_OTHER,
 
     GNOMAD_E_AFR,
     GNOMAD_E_AMR,
-  #        GNOMAD_E_ASJ,
+    #        GNOMAD_E_ASJ,
     GNOMAD_E_EAS,
     GNOMAD_E_FIN,
     GNOMAD_E_NFE,
@@ -183,43 +183,45 @@ frequencySources: [
 
     GNOMAD_G_AFR,
     GNOMAD_G_AMR,
-  #        GNOMAD_G_ASJ,
+    #        GNOMAD_G_ASJ,
     GNOMAD_G_EAS,
     GNOMAD_G_FIN,
     GNOMAD_G_NFE,
     GNOMAD_G_OTH,
-    GNOMAD_G_SAS
-]
+    GNOMAD_G_SAS,
+  ]
 # Possible pathogenicitySources: (POLYPHEN, MUTATION_TASTER, SIFT), (REVEL, MVP), CADD, REMM
 # REMM is trained on non-coding regulatory regions
 # *WARNING* if you enable CADD or REMM ensure that you have downloaded and installed the CADD/REMM tabix files
 # and updated their location in the application.properties. Exomiser will not run without this.
-pathogenicitySources: [ REVEL, MVP ]
+pathogenicitySources: [REVEL, MVP]
 #this is the standard exomiser order.
-steps: [
-    failedVariantFilter: { },
-    variantEffectFilter: {
-      remove: [
-          FIVE_PRIME_UTR_EXON_VARIANT,
-          FIVE_PRIME_UTR_INTRON_VARIANT,
-          THREE_PRIME_UTR_EXON_VARIANT,
-          THREE_PRIME_UTR_INTRON_VARIANT,
-          NON_CODING_TRANSCRIPT_EXON_VARIANT,
-          NON_CODING_TRANSCRIPT_INTRON_VARIANT,
-          CODING_TRANSCRIPT_INTRON_VARIANT,
-          UPSTREAM_GENE_VARIANT,
-          DOWNSTREAM_GENE_VARIANT,
-          INTERGENIC_VARIANT,
-          REGULATORY_REGION_VARIANT
-      ]
-    },
+steps:
+  [
+    failedVariantFilter: {},
+    variantEffectFilter:
+      {
+        remove:
+          [
+            FIVE_PRIME_UTR_EXON_VARIANT,
+            FIVE_PRIME_UTR_INTRON_VARIANT,
+            THREE_PRIME_UTR_EXON_VARIANT,
+            THREE_PRIME_UTR_INTRON_VARIANT,
+            NON_CODING_TRANSCRIPT_EXON_VARIANT,
+            NON_CODING_TRANSCRIPT_INTRON_VARIANT,
+            CODING_TRANSCRIPT_INTRON_VARIANT,
+            UPSTREAM_GENE_VARIANT,
+            DOWNSTREAM_GENE_VARIANT,
+            INTERGENIC_VARIANT,
+            REGULATORY_REGION_VARIANT,
+          ],
+      },
     frequencyFilter: { maxFrequency: 2.0 },
     pathogenicityFilter: { keepNonPathogenic: true },
-    inheritanceFilter: { },
-    omimPrioritiser: { },
-    hiPhivePrioritiser: { }
-]
-
+    inheritanceFilter: {},
+    omimPrioritiser: {},
+    hiPhivePrioritiser: {},
+  ]
 ```
 
 ### Generating Makefile
@@ -228,26 +230,19 @@ steps: [
 ./resources/generatemakefile.sh
 ```
 
-### PhEval Exomiser Optional dependency
-
-Using this configuration example file, the pheval.exomiser dependency must be installed to run the experiment
-
-```bash
-poetry add pheval.exomiser
-```
-
 ### Run the experiment
 
 ```bash
 make pheval
 ```
+
 ---
 
 ## Questions and impacts
-
 
 - Can we move the corpora and test data from the original PhEval repo?
 - How will this move affect PhEval tests?
 
 # Acknowledgements
+
 This [cookiecutter](https://cookiecutter.readthedocs.io/en/stable/README.html) project was developed from the [sphintoxetry-cookiecutter](https://github.com/hrshdhgd/sphintoxetry-cookiecutter) template and will be kept up-to-date using [cruft](https://cruft.github.io/cruft/).

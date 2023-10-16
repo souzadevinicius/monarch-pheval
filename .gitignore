@@ -119,6 +119,7 @@ venv.bak/
 
 # mkdocs documentation
 /site
+docs/api
 
 # mypy
 .mypy_cache/
@@ -127,3 +128,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+.idea/
+.DS_Store
+data/
+.template.db
+.vscode/
+results/
+inputs/
+configurations/
