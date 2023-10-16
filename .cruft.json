@@ -1,0 +1,23 @@
+{
+  "template": "https://github.com/hrshdhgd/sphintoxetry-cookiecutter",
+  "commit": "6fa26b4229ae0335fa61d767a5437e7395140ac6",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "project_name": "monarch-pheval",
+      "__project_slug": "monarch_pheval",
+      "project_description": "Configuration-Base PhEval's Project",
+      "min_python_version": "3.9",
+      "file_name": "main",
+      "greeting_recipient": "World",
+      "full_name": "Vinicius de Souza",
+      "email": "souzadevinicius@gmail.com",
+      "__author": "Vinicius de Souza <souzadevinicius@gmail.com>",
+      "license": "MIT",
+      "github_token_for_doc_deployment": "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",
+      "github_token_for_pypi_deployment": "pypi-AgEIcHlwaS5vcmcCJDgxNzNjMDA4LWQxYjQtNDJhNS1hMmNiLTNlNzkwZjhkZmM2NgACKlszLCI4NjZhNTg0NS0xMGU2LTRjODAtYjMzOC1lNzA2MzdlMzY4MDciXQAABiCyoCTHt4w-SxtLoivLx-xmS4Ws3u9zaMuIEPANKiQgfA",
+      "_template": "https://github.com/hrshdhgd/sphintoxetry-cookiecutter"
+    }
+  },
+  "directory": null
+}
